@@ -1,49 +1,39 @@
-# Yassin Mahmoud - Web Engineering Showcase (No Source Code)
+# Yassin Mahmoud - Delivered Proof Showcase
 
-This repository presents product case studies and concept showcases for professional web development work.
+Public portfolio focused on delivered proof, not idea dumping.
 
-## How Professional Web Developers Work
+## What This Repository Shows
 
-- Define requirements, scope, and delivery milestones before coding
-- Design architecture, schema, API contracts, and service boundaries
-- Build responsive, accessible interfaces with strong UX standards
-- Implement secure backend services with validation and authorization controls
-- Ship with testing, performance optimization, and production readiness checks
-- Operate through CI/CD, observability, and clear documentation
+- Verified delivery evidence from completed private-source projects
+- Professional web engineering standards used in production delivery
+- Premium visual proof pages for portfolio presentation quality
 
-Detailed standards: [projects/PROFESSIONAL_WEB_DEVELOPER_STANDARDS.md](projects/PROFESSIONAL_WEB_DEVELOPER_STANDARDS.md)
+## Delivered Projects
 
-## Delivered Project Case Studies
+- [SportsHub Egypt Case Study](projects/SPORTSHUB_CASE_STUDY.md)
+- [Rocket League Freelook Plugin Case Study](projects/BAKKESMOD_PLUGIN_CASE_STUDY.md)
 
-- [SportsHub Egypt](projects/SPORTSHUB_CASE_STUDY.md)
-- [Rocket League Freelook Plugin (BakkesMod)](projects/BAKKESMOD_PLUGIN_CASE_STUDY.md)
+## Verification Proof Docs
 
-## Professional Web Product Concepts (Non-Sports)
+- [Delivered Web Products](projects/DELIVERED_WEB_PRODUCTS.md)
+- [SportsHub Delivery Proof](projects/SPORTSHUB_DELIVERY_PROOF.md)
+- [BakkesMod Delivery Proof](projects/BAKKESMOD_DELIVERY_PROOF.md)
+- [Professional Web Developer Standards](projects/PROFESSIONAL_WEB_DEVELOPER_STANDARDS.md)
+- [Verification Artifact JSON](proof/verification-2026-03-29.json)
 
-- [SaaS Operations Hub](projects/concepts/SAAS_OPERATIONS_HUB.md)
-- [Headless Commerce Studio](projects/concepts/HEADLESS_COMMERCE_STUDIO.md)
-- [Client Portal Pro](projects/concepts/CLIENT_PORTAL_PRO.md)
-- [Hiring Workflow Suite](projects/concepts/HIRING_WORKFLOW_SUITE.md)
-- [Analytics Command Center](projects/concepts/ANALYTICS_COMMAND_CENTER.md)
+## Visual Proof Pages
 
-## Concept Preview Pages
+- [Proof Hub](pages/index.html)
+- [SportsHub Proof Page](pages/sportshub-delivery-proof.html)
+- [BakkesMod Proof Page](pages/bakkesmod-delivery-proof.html)
+- [Web Delivery Standards Page](pages/professional-web-delivery.html)
 
-- [Preview Hub](pages/index.html)
-- [SaaS Operations Hub Page](pages/saas-operations-hub.html)
-- [Headless Commerce Studio Page](pages/headless-commerce-studio.html)
-- [Client Portal Pro Page](pages/client-portal-pro.html)
-- [Hiring Workflow Suite Page](pages/hiring-workflow-suite.html)
-- [Analytics Command Center Page](pages/analytics-command-center.html)
+Direct browser previews:
+- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/index.html
+- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/sportshub-delivery-proof.html
+- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/bakkesmod-delivery-proof.html
+- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/professional-web-delivery.html
 
 ## Source Code Policy
 
-All implementation repositories for featured production projects remain private.
-
-Public content here includes:
-- Case studies
-- Product concepts
-- Visual preview pages
-- Engineering standards
-
-For private walkthrough requests:
-yassin.158.mahmoud@gmail.com
+All implementation source code remains private by design. Public proof is provided through documented evidence, integrity hashes, and delivery snapshots.

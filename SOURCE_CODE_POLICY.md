@@ -1,17 +1,16 @@
 # Source Code Policy
 
-This repository intentionally excludes implementation source code for featured projects.
+This repository intentionally excludes private implementation source code.
 
 ## Public Scope
-- Product case studies
-- Concept documentation
-- Architecture-level explanations
-- Visual preview pages
-- Professional engineering standards
+- Delivered proof summaries
+- Verification snapshots and hashes
+- Case studies and engineering standards
+- Visual proof pages
 
 ## Private Scope
-- Full source code
-- Infrastructure and deployment internals
+- Complete source code
+- Internal infrastructure setup
 - Proprietary business logic and private integrations
 
 For private technical walkthrough requests:

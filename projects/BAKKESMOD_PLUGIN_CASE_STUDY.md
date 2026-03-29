@@ -1,45 +1,27 @@
-# Rocket League Freelook Plugin (BakkesMod) - Case Study
+# Rocket League Freelook Plugin - Delivered Case Study
 
 ## Project Type
-Native plugin development in C++ for BakkesMod (Rocket League tooling ecosystem).
+Native plugin engineering in C++ for BakkesMod.
 
-## Problem
-Standard camera behavior can limit precision and comfort for certain gameplay and training workflows. A controlled freelook utility is needed with smooth response and predictable reset behavior.
+## Delivery Status
+Delivered as a functional plugin module with runtime controls, input handling, and camera state logic.
 
-## Scope Delivered
-- Freelook activation/deactivation command model
-- Raw mouse input handling for accurate camera deltas
-- Dynamic keybind system with runtime capture and validation
-- In-game settings UI with sensitivity controls
-- Safety logic for focus loss and state recovery
+## Evidence Snapshot (2026-03-29)
+- Plugin source files: 2
+- Main implementation file lines: 537
+- Header file lines: 37
+- Key implementation marker hits: 14
 
-## Technical Details
-- Language: C++
-- Runtime context: BakkesMod plugin SDK
-- Input pipeline: Win32 raw input + async key state checks
-- Camera control: direct swivel updates with pitch clamp and reset paths
+## Functional Delivery Areas
+- Runtime plugin configuration variables
+- Runtime command notifier registration
+- Input thread lifecycle handling
+- Camera swivel update and reset behavior
+- Settings window controls and bind capture flow
 
-## Reliability Features
-- Graceful reset when key-up events are missed
-- Focus-aware handling for alt-tab and foreground changes
-- Raw input thread lifecycle management
-- Defensive checks for invalid bind configurations
+## Integrity Hashes
+- FreelookPlugin.cpp: 2BDA945ED747F557BEA2DD85C760A70F81A7A9AADDD0073737ACD3ADD21C7C92
+- FreelookPlugin.h: C22B0607760566A7F72B262BA8C3F53B55D77A90DB74083BB95B308FF34E5E40
 
-## UX Features
-- Enable/disable plugin toggle
-- Sensitivity slider with reset option
-- "Click To Set Bind" interaction for keyboard/mouse mapping
-- Hold-to-look behavior for intuitive control
-
-## Engineering Focus
-- Low-latency response path
-- Stable state transitions under edge cases
-- Maintainable key mapping strategy across multiple input types
-
-## Source Code Availability
-Source is private by design.
-
-Can be shared in controlled settings as:
-- Build demo
-- Technical walkthrough
-- Plugin behavior review
+## Source Availability
+Source code is private by design.

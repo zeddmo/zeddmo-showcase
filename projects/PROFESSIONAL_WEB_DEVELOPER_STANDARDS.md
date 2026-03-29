@@ -1,41 +1,34 @@
 # Professional Web Developer Standards
 
-## 1) Product Discovery and Planning
-- Clarify business goals, users, and measurable outcomes
-- Define scope, milestones, and delivery risks early
-- Align technical decisions with product priorities
+## 1) Discovery and Product Alignment
+- Define measurable outcomes before implementation
+- Translate requirements into clear technical scope and delivery milestones
 
-## 2) Architecture and Data Design
-- Design modular systems with clear responsibilities
-- Define schema strategy, API contracts, and versioning approach
-- Choose infrastructure that matches scale and reliability targets
+## 2) Architecture and Contracts
+- Design modular systems with explicit service boundaries
+- Maintain reliable schema and API contract discipline
 
-## 3) Frontend Quality
-- Build responsive UI for desktop, tablet, and mobile
-- Follow accessibility standards and semantic markup
-- Maintain component consistency and design-system discipline
+## 3) Frontend Delivery Quality
+- Responsive and accessible UI baseline
+- Maintain component architecture and predictable state patterns
+- Prioritize performance budgets and render efficiency
 
-## 4) Backend and Security
-- Implement strict input validation and authorization checks
-- Handle errors predictably with structured responses
-- Protect secrets and enforce secure environment separation
+## 4) Backend Delivery Quality
+- Input validation, authorization, and error-contract consistency
+- Stable service behavior across environments
 
-## 5) Performance and Reliability
-- Profile bottlenecks and optimize critical paths
-- Use caching and background processing where justified
-- Define uptime, latency, and failure-recovery expectations
+## 5) Release Reliability
+- CI/CD gates before promotion to production
+- Rollback-ready release strategy and changelog hygiene
 
-## 6) Testing and Release Discipline
-- Apply layered testing: regression, smoke, sanity, end-to-end
-- Enforce quality gates in CI before deployment
-- Use rollback-friendly deployment and release notes
+## 6) Verification and Observability
+- Multi-layer testing strategy (regression, smoke, sanity, end-to-end)
+- Runtime monitoring and incident response readiness
 
-## 7) Documentation and Collaboration
-- Document architecture decisions and service contracts
-- Keep onboarding guides and runbooks current
-- Communicate constraints and tradeoffs clearly with stakeholders
+## 7) Documentation and Handoff
+- Architecture notes, setup guides, and maintenance runbooks
+- Communication of constraints, risks, and tradeoffs
 
-## 8) Continuous Improvement
-- Measure usage and production quality metrics
-- Prioritize technical debt alongside feature development
-- Iterate architecture based on real-world usage patterns
+## 8) Evidence-Driven Portfolio Practice
+- Publish delivery evidence and artifact integrity snapshots
+- Keep source private where confidentiality is required
