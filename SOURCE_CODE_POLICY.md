@@ -1,17 +1,18 @@
 # Source Code Policy
 
-This repository intentionally excludes source code for featured projects.
+This repository intentionally excludes implementation source code for featured projects.
 
 ## Public Scope
 - Product case studies
 - Concept documentation
 - Architecture-level explanations
-- Demo and roadmap notes
+- Visual preview pages
+- Professional engineering standards
 
 ## Private Scope
-- Full implementation source
-- Internal services and infrastructure code
-- Proprietary business logic
+- Full source code
+- Infrastructure and deployment internals
+- Proprietary business logic and private integrations
 
 For private technical walkthrough requests:
 yassin.158.mahmoud@gmail.com

@@ -1,15 +1,25 @@
-# Professional Full-Stack Website Ideas - Showcase Index
+# Professional Full-Stack Website Ideas
 
-These are portfolio-grade product concepts documented as public showcases without source code.
+These concepts are built for portfolio credibility and enterprise-style product thinking.
 
-## Concept Showcase Links
-- [VenueOps Cloud](concepts/VENUEOPS_CLOUD.md)
-- [RecruitFlow AI](concepts/RECRUITFLOW_AI.md)
-- [MatchPulse Live](concepts/MATCHPULSE_LIVE.md)
-- [Creator Commerce Studio](concepts/CREATOR_COMMERCE_STUDIO.md)
-- [ClubOS](concepts/CLUBOS.md)
+## Concept Set (Non-Sports)
 
-## Showcase Rules
-- Architecture and product strategy are public
-- Source code remains private
-- Implementation details are shared only in private technical reviews
+1. [SaaS Operations Hub](concepts/SAAS_OPERATIONS_HUB.md)
+2. [Headless Commerce Studio](concepts/HEADLESS_COMMERCE_STUDIO.md)
+3. [Client Portal Pro](concepts/CLIENT_PORTAL_PRO.md)
+4. [Hiring Workflow Suite](concepts/HIRING_WORKFLOW_SUITE.md)
+5. [Analytics Command Center](concepts/ANALYTICS_COMMAND_CENTER.md)
+
+## Visual Preview Pages
+
+- [Preview Hub](../pages/index.html)
+- [SaaS Operations Hub](../pages/saas-operations-hub.html)
+- [Headless Commerce Studio](../pages/headless-commerce-studio.html)
+- [Client Portal Pro](../pages/client-portal-pro.html)
+- [Hiring Workflow Suite](../pages/hiring-workflow-suite.html)
+- [Analytics Command Center](../pages/analytics-command-center.html)
+
+## Positioning
+
+- Public: concept docs, UX previews, architecture summaries
+- Private: implementation source, infrastructure code, business logic

@@ -11,12 +11,12 @@ Local sports communities need one place to discover venues, create or join match
 - Backend API layer and data models for core sports operations
 - Authentication, booking management, social and messaging features
 - Admin and venue-owner operational dashboards
-- Real-time interactions and production-readiness workflow
+- Event-driven real-time interaction workflows
 
 ## Technical Stack
 - Frontend: Next.js 14, React 19, TypeScript, Tailwind CSS
 - Backend: Node.js, Express, MongoDB, Mongoose
-- Realtime: Socket.io
+- Real-time layer: event-driven updates
 - Payments: Stripe
 - Deployment workflow: Docker, CI/CD-style pipelines
 
