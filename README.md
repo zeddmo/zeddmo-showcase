@@ -1,19 +1,18 @@
 # Yassin Mahmoud - Delivered Proof Showcase
 
-Public portfolio focused on delivered proof, not idea dumping.
+Public portfolio focused on shipped results and high-impact presentation.
 
-## What This Repository Shows
+## Featured Experience
 
-- Verified delivery evidence from completed private-source projects
-- Professional web engineering standards used in production delivery
-- Premium visual proof pages for portfolio presentation quality
+- Flagship Visual Website:
+  https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/nova-hyperion.html
 
-## Delivered Projects
+## Delivered Project Proof
 
 - [SportsHub Egypt Case Study](projects/SPORTSHUB_CASE_STUDY.md)
 - [Rocket League Freelook Plugin Case Study](projects/BAKKESMOD_PLUGIN_CASE_STUDY.md)
 
-## Verification Proof Docs
+## Verification Evidence
 
 - [Delivered Web Products](projects/DELIVERED_WEB_PRODUCTS.md)
 - [SportsHub Delivery Proof](projects/SPORTSHUB_DELIVERY_PROOF.md)
@@ -21,19 +20,14 @@ Public portfolio focused on delivered proof, not idea dumping.
 - [Professional Web Developer Standards](projects/PROFESSIONAL_WEB_DEVELOPER_STANDARDS.md)
 - [Verification Artifact JSON](proof/verification-2026-03-29.json)
 
-## Visual Proof Pages
+## Visual Pages
 
 - [Proof Hub](pages/index.html)
 - [SportsHub Proof Page](pages/sportshub-delivery-proof.html)
 - [BakkesMod Proof Page](pages/bakkesmod-delivery-proof.html)
-- [Web Delivery Standards Page](pages/professional-web-delivery.html)
-
-Direct browser previews:
-- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/index.html
-- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/sportshub-delivery-proof.html
-- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/bakkesmod-delivery-proof.html
-- https://htmlpreview.github.io/?https://raw.githubusercontent.com/zeddmo/zeddmo-showcase/main/pages/professional-web-delivery.html
+- [Professional Web Delivery Page](pages/professional-web-delivery.html)
+- [Flagship Visual Website](pages/nova-hyperion.html)
 
 ## Source Code Policy
 
-All implementation source code remains private by design. Public proof is provided through documented evidence, integrity hashes, and delivery snapshots.
+This repository intentionally excludes private implementation source code. Public content is proof, documentation, and visual presentation.
