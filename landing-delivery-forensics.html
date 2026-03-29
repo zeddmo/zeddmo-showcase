@@ -1,134 +1,252 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Delivery Forensics landing for public proof and verification clarity.">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <meta name='description' content='Delivery Forensics landing with investigation-style proof storytelling.'>
   <title>Delivery Forensics | Zeddmo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
-</head>
-<body class="theme-violetforge">
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap' rel='stylesheet'>
+  <link rel='stylesheet' href='app.css'>
+  <style>
+    .forensics-page {
+      font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    }
 
-  <header class="topbar">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">YM</span>
+    .forensics-page h1,
+    .forensics-page h2,
+    .forensics-page h3,
+    .forensics-page h4 {
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+      letter-spacing: 0.02em;
+    }
+
+    .forensics-page .hero {
+      border-style: dashed;
+      border-color: rgba(186, 147, 255, 0.44);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(186, 147, 255, 0.18), transparent 35%),
+        linear-gradient(155deg, rgba(23, 14, 38, 0.92), rgba(22, 12, 33, 0.82));
+    }
+
+    .case-strip {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .case-item {
+      border: 1px dashed rgba(186, 147, 255, 0.42);
+      border-radius: 14px;
+      background: rgba(31, 20, 48, 0.56);
+      padding: 0.78rem;
+    }
+
+    .case-item strong {
+      display: block;
+      color: #ead9ff;
+      font-size: 1.2rem;
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+    }
+
+    .case-item span {
+      margin-top: 0.28rem;
+      display: block;
+      color: #bea9dc;
+      font-size: 0.84rem;
+    }
+
+    .evidence-board {
+      margin-top: 1.1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .evidence-card {
+      border: 1px dashed rgba(186, 147, 255, 0.42);
+      border-radius: 16px;
+      background: rgba(30, 20, 45, 0.6);
+      padding: 0.95rem;
+    }
+
+    .evidence-card p {
+      margin: 0.42rem 0 0;
+      color: #c2b0dd;
+      line-height: 1.58;
+    }
+
+    .custody {
+      margin-top: 0.85rem;
+      display: grid;
+      gap: 0.62rem;
+      counter-reset: chain;
+    }
+
+    .custody li {
+      list-style: none;
+      border-left: 2px dotted rgba(186, 147, 255, 0.5);
+      padding-left: 0.75rem;
+      color: #c7b5df;
+      line-height: 1.55;
+      position: relative;
+    }
+
+    .custody li::before {
+      counter-increment: chain;
+      content: 'C' counter(chain);
+      position: absolute;
+      left: -1.05rem;
+      top: 0;
+      font-size: 0.72rem;
+      color: #f0dfff;
+      background: rgba(105, 77, 150, 0.62);
+      border: 1px solid rgba(218, 188, 255, 0.35);
+      border-radius: 999px;
+      padding: 0.1rem 0.33rem;
+    }
+
+    .archive {
+      margin-top: 1rem;
+      border: 1px dashed rgba(186, 147, 255, 0.38);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .archive header {
+      padding: 0.62rem 0.78rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+      color: #e8d6ff;
+      background: rgba(46, 27, 68, 0.55);
+    }
+
+    .archive pre {
+      margin: 0;
+      padding: 0.82rem;
+      color: #ccb8ea;
+      line-height: 1.56;
+      white-space: pre-wrap;
+      font-family: 'IBM Plex Mono', Consolas, monospace;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1020px) {
+      .case-strip,
+      .evidence-board {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class='theme-violetforge forensics-page'>
+  <canvas id='mesh' aria-hidden='true'></canvas>
+  <div class='noise' aria-hidden='true'></div>
+  <div class='cursor-aura' id='cursorAura' aria-hidden='true'></div>
+
+  <header class='topbar'>
+    <div class='shell nav-wrap'>
+      <a class='brand' href='index.html'>
+        <span class='brand-mark'>YM</span>
         <span>Delivery Forensics</span>
       </a>
-      <nav class="nav">
-        <a href="#proof">Proof</a>
-        <a href="#quality">Method</a>
-        <a href="#contact">Contact</a>
+      <nav class='nav'>
+        <a href='#proof'>Evidence</a>
+        <a href='#method'>Method</a>
+        <a href='#contact'>Contact</a>
       </nav>
-      <a class="mini-cta" href="index.html">Launchpad</a>
+      <a class='mini-cta' href='index.html'>Launchpad</a>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero reveal">
-      <p class="badge">Landing 4 of 6</p>
-      <h1>Delivery Forensics: audit-style landing for trust at first glance.</h1>
-      <p class="sub">
-        This one-page narrative is tuned for stakeholders who need evidence before discussion.
-        It combines web and native delivery signals with a clean proof chain.
+  <main class='shell'>
+    <section class='hero reveal'>
+      <p class='badge'>Landing 4 of 6</p>
+      <h1>A forensic-style landing that reads like an evidence file.</h1>
+      <p class='sub'>
+        Built for decision makers who need proof trails. This page uses case logic, chain-of-custody style flow, and artifact snapshots.
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#proof">Open Proof Log</a>
-        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Talk Delivery</a>
+      <div class='hero-actions'>
+        <a class='btn btn-primary' href='#proof'>Inspect Evidence</a>
+        <a class='btn btn-ghost' href='mailto:yassin.158.mahmoud@gmail.com'>Open Case</a>
       </div>
     </section>
 
-    <section class="kpi-grid">
-      <article class="kpi-card reveal" data-tilt>
-        <p class="kpi-value" data-target="581">0</p>
-        <p class="kpi-label">SportsHub files scanned</p>
-      </article>
-      <article class="kpi-card reveal delay-1" data-tilt>
-        <p class="kpi-value" data-target="537">0</p>
-        <p class="kpi-label">Plugin core lines scanned</p>
-      </article>
-      <article class="kpi-card reveal delay-2" data-tilt>
-        <p class="kpi-value" data-target="14">0</p>
-        <p class="kpi-label">Native implementation markers</p>
-      </article>
-      <article class="kpi-card reveal delay-3" data-tilt>
-        <p class="kpi-value" data-target="8">0</p>
-        <p class="kpi-label">Public hash excerpts</p>
-      </article>
+    <section class='case-strip'>
+      <article class='case-item reveal' data-tilt><strong>581</strong><span>SportsHub files logged</span></article>
+      <article class='case-item reveal delay-1' data-tilt><strong>537</strong><span>Plugin core lines logged</span></article>
+      <article class='case-item reveal delay-2' data-tilt><strong>14</strong><span>Marker hits recorded</span></article>
+      <article class='case-item reveal delay-3' data-tilt><strong>8</strong><span>Hash excerpts archived</span></article>
     </section>
 
-    <section id="proof" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Forensic Proof</p>
+    <section id='proof' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Evidence Deck</p>
         <h2>Verification Register</h2>
         <p>Snapshot date: March 29, 2026.</p>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card reveal" data-tilt>
-          <h3>SportsHub Register</h3>
+
+      <div class='evidence-board'>
+        <article class='evidence-card reveal' data-tilt>
+          <h3>Case A: SportsHub</h3>
+          <p>Directly observed structure and artifact integrity excerpts.</p>
           <ul>
             <li>Frontend files: 119</li>
             <li>Backend files: 34</li>
             <li>App route/page files: 53</li>
             <li>Module route files: 13</li>
           </ul>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr></thead>
-              <tbody>
-                <tr><td>README.md</td><td>9AA7A0AC...E0D6FF46D</td></tr>
-                <tr><td>BUILD_COMPLETE.md</td><td>DE3FD736...27493E02</td></tr>
-              </tbody>
-            </table>
+          <div class='archive'>
+            <header>hash-log.sportshub</header>
+            <pre>README.md          9AA7A0AC...E0D6FF46D
+BUILD_COMPLETE.md  DE3FD736...27493E02
+QUICK_START.md     A6F08BE3...BBB60D23</pre>
           </div>
         </article>
-        <article class="proof-card reveal delay-1" data-tilt>
-          <h3>BakkesMod Register</h3>
+
+        <article class='evidence-card reveal delay-1' data-tilt>
+          <h3>Case B: BakkesMod</h3>
+          <p>Native C++ footprint and marker telemetry with integrity traces.</p>
           <ul>
             <li>Main implementation lines: 537</li>
             <li>Header lines: 37</li>
-            <li>Key marker hits: 14</li>
             <li>Source files: 2</li>
+            <li>Key marker hits: 14</li>
           </ul>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr></thead>
-              <tbody>
-                <tr><td>FreelookPlugin.cpp</td><td>2BDA945E...D21C7C92</td></tr>
-                <tr><td>CMakeLists.txt</td><td>C6E1A3FD...9C201A634</td></tr>
-              </tbody>
-            </table>
+          <div class='archive'>
+            <header>hash-log.bakkes</header>
+            <pre>FreelookPlugin.cpp  2BDA945E...D21C7C92
+FreelookPlugin.h    C22B0607...F34E5E40
+CMakeLists.txt      C6E1A3FD...9C201A634</pre>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="quality" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Evidence Method</p>
-        <h2>How Trust Is Built</h2>
+    <section id='method' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Chain Of Custody</p>
+        <h2>Evidence Method</h2>
       </div>
-      <div class="quality-grid">
-        <article class="quality-card reveal"><h4>Direct Snapshot</h4><p>Counts and artifacts are pulled from real project snapshots.</p></article>
-        <article class="quality-card reveal delay-1"><h4>Hash Excerpts</h4><p>Integrity is shown without exposing full files.</p></article>
-        <article class="quality-card reveal delay-2"><h4>Narrative Control</h4><p>Single-page proof keeps attention on credibility.</p></article>
-        <article class="quality-card reveal delay-3"><h4>Source Protection</h4><p>Private repositories remain private by policy.</p></article>
-      </div>
+      <article class='proof-card reveal' data-tilt>
+        <ol class='custody'>
+          <li><strong>Capture</strong>File surfaces are directly counted from project snapshots.</li>
+          <li><strong>Correlate</strong>Counts map to public narrative and project scope claims.</li>
+          <li><strong>Hash</strong>Selected artifacts are hashed and excerpted for integrity confidence.</li>
+          <li><strong>Publish</strong>Proof appears publicly while source remains private.</li>
+        </ol>
+      </article>
     </section>
 
-    <section id="contact" class="contact reveal">
-      <h2>Want an audit-ready product landing?</h2>
-      <p>High trust by design, from first scroll to final CTA.</p>
-      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    <section id='contact' class='contact reveal'>
+      <h2>Need this forensic trust model on your landing page?</h2>
+      <p>Designed for stakeholders who approve based on evidence quality.</p>
+      <a class='btn btn-primary' href='mailto:yassin.158.mahmoud@gmail.com'>Contact Yassin Mahmoud</a>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src='app.js'></script>
 </body>
 </html>

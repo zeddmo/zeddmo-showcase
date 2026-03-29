@@ -1,116 +1,265 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Product Velocity landing focused on growth-grade speed with proof.">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <meta name='description' content='Product Velocity landing with growth-studio personality and proof-backed momentum.'>
   <title>Product Velocity | Zeddmo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
-</head>
-<body class="theme-cyberlime">
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap' rel='stylesheet'>
+  <link rel='stylesheet' href='app.css'>
+  <style>
+    .velocity-page {
+      font-family: 'Outfit', 'Segoe UI', sans-serif;
+    }
 
-  <header class="topbar">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">YM</span>
+    .velocity-page h1,
+    .velocity-page h2,
+    .velocity-page h3,
+    .velocity-page h4 {
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .velocity-page .hero {
+      border-color: rgba(181, 255, 87, 0.45);
+      background:
+        radial-gradient(circle at 18% -4%, rgba(181, 255, 87, 0.2), transparent 40%),
+        radial-gradient(circle at 92% 0, rgba(87, 255, 176, 0.18), transparent 38%),
+        linear-gradient(150deg, rgba(19, 44, 13, 0.86), rgba(13, 31, 11, 0.78));
+      overflow: hidden;
+    }
+
+    .velocity-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .burst {
+      border: 1px solid rgba(181, 255, 87, 0.35);
+      border-radius: 18px;
+      background: rgba(25, 47, 16, 0.58);
+      padding: 1rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .burst strong {
+      font-size: clamp(1.7rem, 3.6vw, 3rem);
+      color: #e8ffc9;
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      line-height: 1;
+    }
+
+    .burst span {
+      color: #c2e7a4;
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .ribbon {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .ribbon article {
+      border: 1px solid rgba(181, 255, 87, 0.34);
+      border-radius: 14px;
+      background: rgba(26, 49, 18, 0.52);
+      padding: 0.72rem;
+    }
+
+    .ribbon strong {
+      display: block;
+      color: #e6ffbf;
+      font-size: 1.2rem;
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    }
+
+    .ribbon span {
+      color: #badb9f;
+      font-size: 0.83rem;
+    }
+
+    .sprint-board {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0.85rem;
+    }
+
+    .sprint-card {
+      border: 1px solid rgba(181, 255, 87, 0.34);
+      border-radius: 16px;
+      background: rgba(24, 46, 16, 0.58);
+      padding: 0.95rem;
+    }
+
+    .sprint-card p {
+      margin: 0.45rem 0 0;
+      color: #bbdc9e;
+      line-height: 1.58;
+    }
+
+    .tempo {
+      margin-top: 0.7rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .tempo-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.7rem;
+      border: 1px solid rgba(181, 255, 87, 0.24);
+      border-radius: 11px;
+      background: rgba(20, 40, 14, 0.68);
+      padding: 0.56rem 0.66rem;
+      color: #c2e6a5;
+      font-size: 0.84rem;
+    }
+
+    .tempo-row strong {
+      color: #ebffd1;
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    }
+
+    .studio-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.72rem;
+    }
+
+    .studio-grid article {
+      border: 1px solid rgba(181, 255, 87, 0.34);
+      border-radius: 14px;
+      background: rgba(23, 45, 15, 0.54);
+      padding: 0.82rem;
+    }
+
+    .studio-grid p {
+      margin: 0.38rem 0 0;
+      color: #badc9f;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1060px) {
+      .velocity-layout,
+      .ribbon,
+      .sprint-board,
+      .studio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class='theme-cyberlime velocity-page'>
+  <canvas id='mesh' aria-hidden='true'></canvas>
+  <div class='noise' aria-hidden='true'></div>
+  <div class='cursor-aura' id='cursorAura' aria-hidden='true'></div>
+
+  <header class='topbar'>
+    <div class='shell nav-wrap'>
+      <a class='brand' href='index.html'>
+        <span class='brand-mark'>YM</span>
         <span>Product Velocity</span>
       </a>
-      <nav class="nav">
-        <a href="#proof">Proof</a>
-        <a href="#quality">Systems</a>
-        <a href="#contact">Contact</a>
+      <nav class='nav'>
+        <a href='#proof'>Proof</a>
+        <a href='#tempo'>Tempo</a>
+        <a href='#contact'>Contact</a>
       </nav>
-      <a class="mini-cta" href="index.html">Launchpad</a>
+      <a class='mini-cta' href='index.html'>Launchpad</a>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero reveal">
-      <p class="badge">Landing 6 of 6</p>
-      <h1>Product Velocity: growth-speed narrative with proof-backed execution.</h1>
-      <p class="sub">
-        This concept is built for founders and teams that need speed without losing engineering credibility.
-        Every claim is tied to measurable delivery signals.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#proof">Open Velocity Proof</a>
-        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Start Project</a>
+  <main class='shell'>
+    <section class='hero reveal'>
+      <div class='velocity-layout'>
+        <div>
+          <p class='badge'>Landing 6 of 6</p>
+          <h1>Startup-speed personality with evidence baked into the pitch.</h1>
+          <p class='sub'>
+            This concept is kinetic and growth oriented. It communicates speed, but every claim remains anchored to delivery metrics.
+          </p>
+          <div class='hero-actions'>
+            <a class='btn btn-primary' href='#proof'>View Velocity Proof</a>
+            <a class='btn btn-ghost' href='mailto:yassin.158.mahmoud@gmail.com'>Accelerate Launch</a>
+          </div>
+        </div>
+        <aside class='burst reveal delay-1' data-tilt>
+          <strong>581 verified files</strong>
+          <span>Full-stack evidence surface from SportsHub snapshot.</span>
+          <strong>537 native lines</strong>
+          <span>Core gameplay plugin implementation footprint.</span>
+        </aside>
       </div>
     </section>
 
-    <section class="kpi-grid">
-      <article class="kpi-card reveal" data-tilt>
-        <p class="kpi-value" data-target="53">0</p>
-        <p class="kpi-label">App route and page files</p>
-      </article>
-      <article class="kpi-card reveal delay-1" data-tilt>
-        <p class="kpi-value" data-target="13">0</p>
-        <p class="kpi-label">Module route files</p>
-      </article>
-      <article class="kpi-card reveal delay-2" data-tilt>
-        <p class="kpi-value" data-target="537">0</p>
-        <p class="kpi-label">Native plugin core lines</p>
-      </article>
-      <article class="kpi-card reveal delay-3" data-tilt>
-        <p class="kpi-value" data-target="581">0</p>
-        <p class="kpi-label">Verified full-stack files</p>
-      </article>
+    <section class='ribbon'>
+      <article class='reveal' data-tilt><strong>53</strong><span>App route and page files</span></article>
+      <article class='reveal delay-1' data-tilt><strong>13</strong><span>Module route files</span></article>
+      <article class='reveal delay-2' data-tilt><strong>8</strong><span>Integrity hash excerpts</span></article>
     </section>
 
-    <section id="proof" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Velocity With Proof</p>
+    <section id='proof' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Proof Momentum</p>
         <h2>Execution Surface</h2>
+        <p>Verification snapshot date: March 29, 2026.</p>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card reveal" data-tilt>
-          <h3>Web Delivery Depth</h3>
-          <ul>
-            <li>SportsHub verified file count: 581</li>
-            <li>Frontend files: 119</li>
-            <li>Backend files: 34</li>
-            <li>Route surfaces: 53 app + 13 module routes</li>
-          </ul>
-        </article>
-        <article class="proof-card reveal delay-1" data-tilt>
-          <h3>Native Delivery Depth</h3>
-          <ul>
-            <li>FreelookPlugin.cpp lines: 537</li>
-            <li>FreelookPlugin.h lines: 37</li>
-            <li>Implementation marker hits: 14</li>
-            <li>Published hash excerpts: 8 total</li>
-          </ul>
-        </article>
-      </div>
-      <p class="verify reveal delay-2">Verification snapshot date: March 29, 2026.</p>
-    </section>
 
-    <section id="quality" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Scale Systems</p>
-        <h2>Velocity Without Chaos</h2>
-      </div>
-      <div class="quality-grid">
-        <article class="quality-card reveal"><h4>Fast Alignment</h4><p>Requirements translated into sprint-grade milestones quickly.</p></article>
-        <article class="quality-card reveal delay-1"><h4>Build Rhythm</h4><p>Delivery cadence protected by architecture discipline.</p></article>
-        <article class="quality-card reveal delay-2"><h4>Proof Discipline</h4><p>Evidence is published as part of the product narrative.</p></article>
-        <article class="quality-card reveal delay-3"><h4>Source Security</h4><p>Private code remains private across all showcases.</p></article>
+      <div class='sprint-board'>
+        <article class='sprint-card reveal' data-tilt>
+          <h3>Web Stack Throughput</h3>
+          <p>SportsHub delivery carries substantial frontend/backend and route-level complexity.</p>
+          <div class='tempo'>
+            <div class='tempo-row'><span>Frontend files</span><strong>119</strong></div>
+            <div class='tempo-row'><span>Backend files</span><strong>34</strong></div>
+            <div class='tempo-row'><span>App route/pages</span><strong>53</strong></div>
+            <div class='tempo-row'><span>Module routes</span><strong>13</strong></div>
+          </div>
+        </article>
+        <article class='sprint-card reveal delay-1' data-tilt>
+          <h3>Native Stack Throughput</h3>
+          <p>Plugin evidence confirms deep native implementation, not a concept-only claim.</p>
+          <div class='tempo'>
+            <div class='tempo-row'><span>FreelookPlugin.cpp</span><strong>537 lines</strong></div>
+            <div class='tempo-row'><span>FreelookPlugin.h</span><strong>37 lines</strong></div>
+            <div class='tempo-row'><span>Marker hits</span><strong>14</strong></div>
+            <div class='tempo-row'><span>Hash excerpts</span><strong>8 total</strong></div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="contact" class="contact reveal">
-      <h2>Want this velocity profile for your next launch?</h2>
-      <p>Premium landing UX, measurable proof, and private-source implementation.</p>
-      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    <section id='tempo' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Growth Studio</p>
+        <h2>Velocity Design Principles</h2>
+      </div>
+      <div class='studio-grid'>
+        <article class='reveal'><h4>Fast Alignment</h4><p>Requirements are converted to clear ship-ready milestones.</p></article>
+        <article class='reveal delay-1'><h4>Execution Rhythm</h4><p>Delivery cadence is protected by architecture discipline.</p></article>
+        <article class='reveal delay-2'><h4>Proof Discipline</h4><p>Evidence is part of the visible product story.</p></article>
+        <article class='reveal delay-3'><h4>Source Privacy</h4><p>Public pages never expose private implementation.</p></article>
+      </div>
+    </section>
+
+    <section id='contact' class='contact reveal'>
+      <h2>Need this growth-grade velocity feel for your landing?</h2>
+      <p>Distinct personality, premium UX, and proof-backed credibility.</p>
+      <a class='btn btn-primary' href='mailto:yassin.158.mahmoud@gmail.com'>Contact Yassin Mahmoud</a>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src='app.js'></script>
 </body>
 </html>
