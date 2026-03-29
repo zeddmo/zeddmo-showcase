@@ -1,158 +1,212 @@
 <!doctype html>
-<html lang="en" class="theme-onyx">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Zeddmo premium landing collection with proof-first pages.">
-  <title>Zeddmo | Landing Collection</title>
+  <meta name="description" content="Yassin Mahmoud portfolio hub with CV and project overview links.">
+  <title>Yassin Mahmoud | Portfolio Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #050b16;
+      --bg2: #0b2036;
+      --bg3: #091a2a;
+      --text: #ecf4ff;
+      --muted: #abc1df;
+      --line: rgba(255,255,255,0.14);
+      --cyan: #63d8ff;
+      --mint: #4fffcf;
+      --violet: #9788ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 700px at 12% -10%, rgba(99,216,255,0.2), transparent 55%),
+        radial-gradient(850px 650px at 90% 0, rgba(79,255,207,0.16), transparent 52%),
+        linear-gradient(165deg, var(--bg1) 0%, var(--bg2) 48%, var(--bg3) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at center, black 34%, transparent 84%);
+      opacity: 0.28;
+      z-index: -1;
+    }
+
+    .container {
+      width: min(1050px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: clamp(1.2rem, 2.2vw, 2.2rem);
+      background:
+        linear-gradient(150deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+        linear-gradient(165deg, rgba(99,216,255,0.12), transparent 56%);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.38);
+    }
+
+    .badge {
+      margin: 0;
+      display: inline-flex;
+      padding: 0.35rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(99,216,255,0.5);
+      background: rgba(99,216,255,0.12);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-family: "Sora", "Segoe UI", sans-serif;
+      line-height: 1.08;
+    }
+
+    h1 {
+      margin-top: 0.9rem;
+      font-size: clamp(2rem, 4.8vw, 4rem);
+      max-width: 14ch;
+    }
+
+    .lead {
+      margin-top: 0.95rem;
+      max-width: 62ch;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .actions {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.82rem 1.18rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--mint));
+      color: #06111f;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(11,24,44,0.64);
+      padding: 0.95rem;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.24);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-family: "Sora", "Segoe UI", sans-serif;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .note {
+      margin-top: 1rem;
+      border: 1px solid rgba(151,136,255,0.36);
+      background: rgba(151,136,255,0.1);
+      border-radius: 14px;
+      padding: 0.78rem;
+      color: #dacfff;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .actions { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">YM</span>
-        <span>Zeddmo Landing Lab</span>
-      </a>
-      <nav class="nav">
-        <a href="#collection">Collection</a>
-        <a href="#proof-model">Proof Model</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="mini-cta" href="https://github.com/zeddmo">GitHub</a>
-    </div>
-  </header>
-
-  <main class="shell">
-    <section class="hero reveal">
-      <p class="badge">Multi-Site Premium Portfolio</p>
-      <h1>Six proof-first landing websites with Huly-level ambition.</h1>
-      <p class="sub">
-        You asked for more than one page. This launchpad now opens six distinct, cinematic landing experiences.
-        Every page is a single landing page with public delivery proof and private source policy.
+  <main class="container">
+    <section class="hero">
+      <p class="badge">Portfolio Hub</p>
+      <h1>CV and project capabilities, no landing pages.</h1>
+      <p class="lead">
+        The six landing pages were removed. This hub now points to the core portfolio assets only:
+        a premium CV page and the project capability README.
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#collection">Open The Collection</a>
-        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Start A Project</a>
+      <div class="actions">
+        <a class="btn btn-primary" href="cv.html">Open CV</a>
+        <a class="btn btn-ghost" href="https://github.com/zeddmo/zeddmo-showcase/blob/main/README.md">Open Project README</a>
       </div>
     </section>
 
-    <section class="kpi-grid">
-      <article class="kpi-card reveal" data-tilt>
-        <p class="kpi-value" data-target="6">0</p>
-        <p class="kpi-label">Standalone landing websites</p>
+    <section class="grid">
+      <article class="card">
+        <h3>E-Commerce</h3>
+        <p>Catalogs, checkout systems, and conversion-oriented storefront UX.</p>
       </article>
-      <article class="kpi-card reveal delay-1" data-tilt>
-        <p class="kpi-value" data-target="581">0</p>
-        <p class="kpi-label">Verified SportsHub files</p>
+      <article class="card">
+        <h3>WordPress</h3>
+        <p>Business websites with CMS workflows and performance-focused structure.</p>
       </article>
-      <article class="kpi-card reveal delay-2" data-tilt>
-        <p class="kpi-value" data-target="537">0</p>
-        <p class="kpi-label">FreelookPlugin.cpp lines</p>
-      </article>
-      <article class="kpi-card reveal delay-3" data-tilt>
-        <p class="kpi-value" data-target="8">0</p>
-        <p class="kpi-label">Published SHA-256 excerpts</p>
+      <article class="card">
+        <h3>Full-Stack + Native</h3>
+        <p>SaaS/web platforms and C++ plugin delivery under private-source policy.</p>
       </article>
     </section>
 
-    <section id="collection" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Choose Experience</p>
-        <h2>Landing Collection</h2>
-        <p>Every destination below is a one-page proof experience with a unique visual language.</p>
-      </div>
-      <div class="launch-grid">
-        <article class="launch-card reveal" data-tilt style="--card-rgb:99,215,255;">
-          <h3>SportsHub Command</h3>
-          <p>Executive tone, product depth, and hard delivery numbers.</p>
-          <div class="tag-row">
-            <span class="tag">Proof First</span>
-            <span class="tag">Revenue UX</span>
-          </div>
-          <a class="btn btn-primary" href="landing-sportshub-command.html">Open Landing</a>
-        </article>
-        <article class="launch-card reveal delay-1" data-tilt style="--card-rgb:255,149,84;">
-          <h3>SportsHub Premium</h3>
-          <p>Fan-facing luxury direction with measurable engineering proof.</p>
-          <div class="tag-row">
-            <span class="tag">Premium UI</span>
-            <span class="tag">Private Source</span>
-          </div>
-          <a class="btn btn-primary" href="landing-sportshub-premium.html">Open Landing</a>
-        </article>
-        <article class="launch-card reveal delay-2" data-tilt style="--card-rgb:88,255,195;">
-          <h3>BakkesMod Cockpit</h3>
-          <p>High-speed gaming aesthetic with native C++ delivery evidence.</p>
-          <div class="tag-row">
-            <span class="tag">Native C++</span>
-            <span class="tag">Gameplay UX</span>
-          </div>
-          <a class="btn btn-primary" href="landing-bakkesmod-cockpit.html">Open Landing</a>
-        </article>
-        <article class="launch-card reveal" data-tilt style="--card-rgb:185,145,255;">
-          <h3>Delivery Forensics</h3>
-          <p>Audit style presentation for proof artifacts and verification history.</p>
-          <div class="tag-row">
-            <span class="tag">Audit Ready</span>
-            <span class="tag">Hash Trails</span>
-          </div>
-          <a class="btn btn-primary" href="landing-delivery-forensics.html">Open Landing</a>
-        </article>
-        <article class="launch-card reveal delay-1" data-tilt style="--card-rgb:255,208,107;">
-          <h3>Release Reliability</h3>
-          <p>Delivery confidence model from scope to quality gates to release.</p>
-          <div class="tag-row">
-            <span class="tag">Quality Gates</span>
-            <span class="tag">Rollback Ready</span>
-          </div>
-          <a class="btn btn-primary" href="landing-release-reliability.html">Open Landing</a>
-        </article>
-        <article class="launch-card reveal delay-2" data-tilt style="--card-rgb:181,255,87;">
-          <h3>Product Velocity</h3>
-          <p>Bold growth narrative with metrics, structure, and execution proof.</p>
-          <div class="tag-row">
-            <span class="tag">Conversion UX</span>
-            <span class="tag">Scale Focus</span>
-          </div>
-          <a class="btn btn-primary" href="landing-product-velocity.html">Open Landing</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="proof-model" class="section">
-      <div class="section-head reveal">
-        <p class="badge">No Source Exposure</p>
-        <h2>Proof Model</h2>
-      </div>
-      <article class="proof-model reveal" data-tilt>
-        <p>
-          This portfolio uses a public-proof / private-source model:
-          outcomes and evidence are visible, while source code stays in private repositories.
-        </p>
-        <ul>
-          <li>SportsHub verification snapshot: 581 files across frontend and backend surfaces.</li>
-          <li>BakkesMod plugin verification snapshot: 537 main C++ lines, 14 implementation marker hits.</li>
-          <li>Published hash excerpts for public integrity checks without source disclosure.</li>
-          <li>Single-page experience per concept to keep focus, speed, and narrative clarity.</li>
-        </ul>
-      </article>
-    </section>
-
-    <section id="contact" class="contact reveal">
-      <h2>Need this level of landing experience for your product?</h2>
-      <p>Reach out for private-source implementation with proof-grade public presentation.</p>
-      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
-    </section>
+    <p class="note">Source policy: public proof and summaries are visible, implementation repositories remain private.</p>
   </main>
-
-  <script src="app.js"></script>
 </body>
 </html>
