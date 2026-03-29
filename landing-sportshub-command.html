@@ -1,124 +1,308 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="SportsHub Command landing with proof-first delivery narrative.">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <meta name='description' content='SportsHub Command landing with control-room personality and proof-first narrative.'>
   <title>SportsHub Command | Zeddmo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
-</head>
-<body class="theme-cobalt">
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap' rel='stylesheet'>
+  <link rel='stylesheet' href='app.css'>
+  <style>
+    .command-page .hero {
+      padding: 0;
+      overflow: hidden;
+      border-color: rgba(99, 215, 255, 0.42);
+      background: linear-gradient(145deg, rgba(6, 20, 48, 0.92), rgba(6, 16, 38, 0.8));
+    }
 
-  <header class="topbar">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">YM</span>
+    .command-hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      min-height: 430px;
+    }
+
+    .command-copy {
+      padding: clamp(1.2rem, 2vw, 2.3rem);
+      display: grid;
+      align-content: center;
+      gap: 0.9rem;
+    }
+
+    .command-copy h1 {
+      font-size: clamp(1.9rem, 4.3vw, 3.65rem);
+      max-width: 16ch;
+    }
+
+    .command-console {
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(180deg, rgba(6, 24, 48, 0.72), rgba(4, 14, 34, 0.88));
+      padding: clamp(1rem, 1.7vw, 1.7rem);
+      display: grid;
+      align-content: center;
+      gap: 0.7rem;
+    }
+
+    .console-title {
+      margin: 0;
+      font-size: 0.84rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: #bfe8ff;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 0.56rem;
+    }
+
+    .signal {
+      border: 1px solid rgba(111, 212, 255, 0.28);
+      border-radius: 14px;
+      background: rgba(8, 29, 57, 0.62);
+      padding: 0.65rem 0.78rem;
+    }
+
+    .signal strong {
+      display: block;
+      font-family: 'Syne', 'Segoe UI', sans-serif;
+      font-size: 1.08rem;
+      color: #e8f6ff;
+    }
+
+    .signal span {
+      color: #9ac0dc;
+      font-size: 0.88rem;
+    }
+
+    .mission-strip {
+      margin-top: 0.95rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .mission-chip {
+      border: 1px solid rgba(99, 215, 255, 0.34);
+      border-radius: 15px;
+      background: rgba(8, 25, 49, 0.58);
+      padding: 0.9rem;
+    }
+
+    .mission-chip h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .mission-chip p {
+      margin: 0.45rem 0 0;
+      color: #a7c5df;
+      line-height: 1.55;
+    }
+
+    .proof-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .ops-table {
+      margin-top: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .ops-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.8rem;
+      padding: 0.72rem 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #bfd8ec;
+    }
+
+    .ops-row:last-child {
+      border-bottom: 0;
+    }
+
+    .ops-row strong {
+      color: #eef6ff;
+      font-family: 'Syne', 'Segoe UI', sans-serif;
+    }
+
+    .timeline {
+      margin: 0.3rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .timeline li {
+      border-left: 2px solid rgba(99, 215, 255, 0.45);
+      padding-left: 0.8rem;
+      color: #a6c2da;
+      line-height: 1.55;
+    }
+
+    .timeline li strong {
+      display: block;
+      color: #edf6ff;
+      margin-bottom: 0.2rem;
+    }
+
+    .command-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .pillar {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      background: rgba(12, 28, 55, 0.56);
+      padding: 1rem;
+    }
+
+    .pillar h4 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .pillar p {
+      margin: 0.45rem 0 0;
+      color: #a9c6df;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1020px) {
+      .command-hero,
+      .proof-matrix,
+      .command-pillars,
+      .mission-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .command-console {
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+    }
+  </style>
+</head>
+<body class='theme-cobalt command-page'>
+  <canvas id='mesh' aria-hidden='true'></canvas>
+  <div class='noise' aria-hidden='true'></div>
+  <div class='cursor-aura' id='cursorAura' aria-hidden='true'></div>
+
+  <header class='topbar'>
+    <div class='shell nav-wrap'>
+      <a class='brand' href='index.html'>
+        <span class='brand-mark'>YM</span>
         <span>SportsHub Command</span>
       </a>
-      <nav class="nav">
-        <a href="#proof">Proof</a>
-        <a href="#quality">Quality</a>
-        <a href="#contact">Contact</a>
+      <nav class='nav'>
+        <a href='#proof'>Proof</a>
+        <a href='#quality'>Method</a>
+        <a href='#contact'>Contact</a>
       </nav>
-      <a class="mini-cta" href="index.html">Launchpad</a>
+      <a class='mini-cta' href='index.html'>Launchpad</a>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero reveal">
-      <p class="badge">Landing 1 of 6</p>
-      <h1>SportsHub Command: product leadership with delivery proof.</h1>
-      <p class="sub">
-        This page presents SportsHub as an executive-grade product surface.
-        Public visitors see verified scope and artifacts while implementation stays private.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#proof">Review Proof</a>
-        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Request Build</a>
+  <main class='shell'>
+    <section class='hero reveal'>
+      <div class='command-hero'>
+        <div class='command-copy'>
+          <p class='badge'>Landing 1 of 6</p>
+          <h1>Control-room clarity for a sports product that has to perform.</h1>
+          <p class='sub'>
+            This version feels like an operations console: fast, precise, and confidence heavy.
+            Every proof artifact is visible here while source stays private.
+          </p>
+          <div class='hero-actions'>
+            <a class='btn btn-primary' href='#proof'>Open Proof Board</a>
+            <a class='btn btn-ghost' href='mailto:yassin.158.mahmoud@gmail.com'>Start Build</a>
+          </div>
+        </div>
+        <aside class='command-console'>
+          <p class='console-title'>Live Command Snapshot</p>
+          <div class='signal-list'>
+            <div class='signal'><strong>581</strong><span>Verified full-stack files</span></div>
+            <div class='signal'><strong>53 + 13</strong><span>Route surfaces mapped</span></div>
+            <div class='signal'><strong>8</strong><span>Integrity hashes published</span></div>
+            <div class='signal'><strong>0</strong><span>Public source exposure</span></div>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section class="kpi-grid">
-      <article class="kpi-card reveal" data-tilt>
-        <p class="kpi-value" data-target="581">0</p>
-        <p class="kpi-label">Verified SportsHub files</p>
+    <section class='mission-strip'>
+      <article class='mission-chip reveal' data-tilt>
+        <h3>Audience</h3>
+        <p>Stakeholders who want proof, not adjectives.</p>
       </article>
-      <article class="kpi-card reveal delay-1" data-tilt>
-        <p class="kpi-value" data-target="53">0</p>
-        <p class="kpi-label">App route and page files</p>
+      <article class='mission-chip reveal delay-1' data-tilt>
+        <h3>Positioning</h3>
+        <p>Premium web product delivery with measurable scope.</p>
       </article>
-      <article class="kpi-card reveal delay-2" data-tilt>
-        <p class="kpi-value" data-target="13">0</p>
-        <p class="kpi-label">Backend module route files</p>
-      </article>
-      <article class="kpi-card reveal delay-3" data-tilt>
-        <p class="kpi-value" data-target="8">0</p>
-        <p class="kpi-label">Published SHA-256 excerpts</p>
+      <article class='mission-chip reveal delay-2' data-tilt>
+        <h3>Policy</h3>
+        <p>Public outcomes, private repositories, clean traceability.</p>
       </article>
     </section>
 
-    <section id="proof" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Proof Embedded</p>
+    <section id='proof' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Embedded Evidence</p>
         <h2>Delivery Proof</h2>
-        <p>Snapshot date: March 29, 2026. Source remains private by design.</p>
+        <p>Verification snapshot date: March 29, 2026.</p>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card reveal" data-tilt>
-          <h3>Verified Surface</h3>
-          <p>Measured project structure from direct repository snapshot.</p>
-          <ul>
-            <li>Frontend files: 119</li>
-            <li>Backend files: 34</li>
-            <li>App route/page files: 53</li>
-            <li>Module route files: 13</li>
-          </ul>
-        </article>
-        <article class="proof-card reveal delay-1" data-tilt>
-          <h3>Artifact Hash Trail</h3>
-          <p>Integrity excerpts for public verification without source release.</p>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr></thead>
-              <tbody>
-                <tr><td>README.md</td><td>9AA7A0AC...E0D6FF46D</td></tr>
-                <tr><td>FINAL_SUMMARY.txt</td><td>B16F2740...DF623BFE7</td></tr>
-                <tr><td>BUILD_COMPLETE.md</td><td>DE3FD736...27493E02</td></tr>
-                <tr><td>QUICK_START.md</td><td>A6F08BE3...BBB60D23</td></tr>
-              </tbody>
-            </table>
+      <div class='proof-matrix'>
+        <article class='proof-card reveal' data-tilt>
+          <h3>Coverage Board</h3>
+          <p>Direct snapshot counts from SportsHub project surfaces.</p>
+          <div class='ops-table'>
+            <div class='ops-row'><span>Frontend files</span><strong>119</strong></div>
+            <div class='ops-row'><span>Backend files</span><strong>34</strong></div>
+            <div class='ops-row'><span>App route/page files</span><strong>53</strong></div>
+            <div class='ops-row'><span>Module route files</span><strong>13</strong></div>
           </div>
         </article>
+        <article class='proof-card reveal delay-1' data-tilt>
+          <h3>Chain Of Trust</h3>
+          <ul class='timeline'>
+            <li><strong>1. Snapshot capture</strong>Project surface indexed and counted from direct local tree.</li>
+            <li><strong>2. Artifact hashing</strong>Build and summary files converted to SHA-256 excerpts.</li>
+            <li><strong>3. Public publication</strong>Proof appears on landing while implementation remains private.</li>
+            <li><strong>4. Stakeholder confidence</strong>Claims map to visible, checkable evidence.</li>
+          </ul>
+        </article>
       </div>
-      <p class="verify reveal delay-2">Policy: public proof, private source.</p>
+      <p class='verify reveal delay-2'>Policy remains constant: public proof, private source code.</p>
     </section>
 
-    <section id="quality" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Execution Standard</p>
-        <h2>How Delivery Is Controlled</h2>
+    <section id='quality' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Operating Standard</p>
+        <h2>Execution Pillars</h2>
       </div>
-      <div class="quality-grid">
-        <article class="quality-card reveal"><h4>Scope Discipline</h4><p>Requirements mapped to measurable implementation milestones.</p></article>
-        <article class="quality-card reveal delay-1"><h4>Architecture Control</h4><p>Bounded services, consistent schema, explicit contracts.</p></article>
-        <article class="quality-card reveal delay-2"><h4>Quality Gates</h4><p>Regression, smoke, and sanity checks before release.</p></article>
-        <article class="quality-card reveal delay-3"><h4>Release Safety</h4><p>Rollback readiness and handoff documentation included.</p></article>
+      <div class='command-pillars'>
+        <article class='pillar reveal'><h4>Scope Precision</h4><p>Requirements are translated into milestone-level implementation tasks.</p></article>
+        <article class='pillar reveal delay-1'><h4>Architecture Discipline</h4><p>Boundaries, contracts, and schema consistency before scaling.</p></article>
+        <article class='pillar reveal delay-2'><h4>Release Safety</h4><p>Regression checks and rollback posture built into the cycle.</p></article>
       </div>
     </section>
 
-    <section id="contact" class="contact reveal">
-      <h2>Want this level for your own product landing?</h2>
-      <p>Private-source implementation with premium UX and proof-first visibility.</p>
-      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    <section id='contact' class='contact reveal'>
+      <h2>Need this command-level clarity on your own landing?</h2>
+      <p>Private-source implementation. Public proof narrative. Premium UX execution.</p>
+      <a class='btn btn-primary' href='mailto:yassin.158.mahmoud@gmail.com'>Contact Yassin Mahmoud</a>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src='app.js'></script>
 </body>
 </html>

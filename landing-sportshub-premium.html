@@ -1,89 +1,253 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="SportsHub Premium landing with luxury fan-facing direction and proof.">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <meta name='description' content='SportsHub Premium landing with luxury editorial personality and proof-first structure.'>
   <title>SportsHub Premium | Zeddmo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
-</head>
-<body class="theme-vermilion">
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap' rel='stylesheet'>
+  <link rel='stylesheet' href='app.css'>
+  <style>
+    .premium-page {
+      font-family: 'Manrope', 'Segoe UI', sans-serif;
+    }
 
-  <header class="topbar">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">YM</span>
+    .premium-page h1,
+    .premium-page h2,
+    .premium-page h3,
+    .premium-page h4 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.01em;
+    }
+
+    .premium-page .hero {
+      text-align: center;
+      padding: clamp(1.4rem, 2.5vw, 2.5rem);
+      background:
+        radial-gradient(circle at 50% 0, rgba(255, 176, 112, 0.2), transparent 48%),
+        linear-gradient(150deg, rgba(56, 20, 16, 0.8), rgba(38, 15, 24, 0.72));
+      border-color: rgba(255, 180, 126, 0.44);
+    }
+
+    .premium-page .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      max-width: 14ch;
+      margin-inline: auto;
+      text-wrap: balance;
+    }
+
+    .signature {
+      margin-top: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffd4aa;
+      font-size: 0.84rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .signature::before,
+    .signature::after {
+      content: '';
+      width: 38px;
+      height: 1px;
+      background: rgba(255, 206, 153, 0.7);
+    }
+
+    .sub-lux {
+      margin: 1rem auto 0;
+      max-width: 62ch;
+      color: #eecfb5;
+      line-height: 1.72;
+    }
+
+    .signature-band {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .signature-chip {
+      border: 1px solid rgba(255, 188, 136, 0.42);
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(90, 35, 29, 0.68), rgba(68, 20, 27, 0.52));
+      padding: 0.88rem;
+      text-align: center;
+    }
+
+    .signature-chip strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: #ffe4c8;
+    }
+
+    .signature-chip span {
+      display: block;
+      margin-top: 0.28rem;
+      color: #efc8a3;
+      font-size: 0.88rem;
+    }
+
+    .runway {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0.9rem;
+    }
+
+    .runway-card {
+      border: 1px solid rgba(255, 188, 136, 0.35);
+      border-radius: 18px;
+      background: rgba(74, 27, 30, 0.52);
+      padding: 1rem;
+    }
+
+    .runway-card p {
+      margin: 0.5rem 0 0;
+      color: #edc9a7;
+      line-height: 1.63;
+    }
+
+    .proof-salon {
+      margin-top: 0.9rem;
+      border: 1px solid rgba(255, 188, 136, 0.32);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .proof-salon header {
+      padding: 0.8rem 0.9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(92, 30, 24, 0.48);
+      color: #ffe2c2;
+      font-weight: 700;
+    }
+
+    .proof-salon ul {
+      margin: 0;
+      padding: 0.75rem 0.9rem 0.9rem;
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      color: #efc9a8;
+    }
+
+    .proof-salon li {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.45rem;
+    }
+
+    .proof-salon li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .atelier {
+      margin-top: 1.8rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .atelier article {
+      border: 1px solid rgba(255, 188, 136, 0.34);
+      border-radius: 16px;
+      background: rgba(84, 33, 29, 0.46);
+      padding: 1rem;
+    }
+
+    .atelier p {
+      margin: 0.45rem 0 0;
+      color: #edc9a7;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1020px) {
+      .signature-band,
+      .runway,
+      .atelier {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class='theme-vermilion premium-page'>
+  <canvas id='mesh' aria-hidden='true'></canvas>
+  <div class='noise' aria-hidden='true'></div>
+  <div class='cursor-aura' id='cursorAura' aria-hidden='true'></div>
+
+  <header class='topbar'>
+    <div class='shell nav-wrap'>
+      <a class='brand' href='index.html'>
+        <span class='brand-mark'>YM</span>
         <span>SportsHub Premium</span>
       </a>
-      <nav class="nav">
-        <a href="#proof">Proof</a>
-        <a href="#quality">Quality</a>
-        <a href="#contact">Contact</a>
+      <nav class='nav'>
+        <a href='#proof'>Proof</a>
+        <a href='#quality'>Quality</a>
+        <a href='#contact'>Contact</a>
       </nav>
-      <a class="mini-cta" href="index.html">Launchpad</a>
+      <a class='mini-cta' href='index.html'>Launchpad</a>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero reveal">
-      <p class="badge">Landing 2 of 6</p>
-      <h1>SportsHub Premium: fan emotion meets enterprise-grade delivery.</h1>
-      <p class="sub">
-        A luxury visual direction for sports products with measured backend depth and release discipline.
-        One page, full confidence story, no source leakage.
+  <main class='shell'>
+    <section class='hero reveal'>
+      <p class='badge'>Landing 2 of 6</p>
+      <div class='signature'>Premium Sports UX Direction</div>
+      <h1>A luxury front-stage for SportsHub without sacrificing proof.</h1>
+      <p class='sub-lux'>
+        This page is intentionally editorial and refined. It targets premium product perception while keeping delivery evidence visible and concrete.
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#proof">Inspect Evidence</a>
-        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Book Build</a>
+      <div class='hero-actions'>
+        <a class='btn btn-primary' href='#proof'>View The Proof Salon</a>
+        <a class='btn btn-ghost' href='mailto:yassin.158.mahmoud@gmail.com'>Commission Build</a>
       </div>
     </section>
 
-    <section class="kpi-grid">
-      <article class="kpi-card reveal" data-tilt>
-        <p class="kpi-value" data-target="119">0</p>
-        <p class="kpi-label">Frontend files verified</p>
-      </article>
-      <article class="kpi-card reveal delay-1" data-tilt>
-        <p class="kpi-value" data-target="34">0</p>
-        <p class="kpi-label">Backend files verified</p>
-      </article>
-      <article class="kpi-card reveal delay-2" data-tilt>
-        <p class="kpi-value" data-target="53">0</p>
-        <p class="kpi-label">App route and page files</p>
-      </article>
-      <article class="kpi-card reveal delay-3" data-tilt>
-        <p class="kpi-value" data-target="8">0</p>
-        <p class="kpi-label">Integrity hash excerpts</p>
-      </article>
+    <section class='signature-band'>
+      <article class='signature-chip reveal' data-tilt><strong>119</strong><span>Frontend files</span></article>
+      <article class='signature-chip reveal delay-1' data-tilt><strong>34</strong><span>Backend files</span></article>
+      <article class='signature-chip reveal delay-2' data-tilt><strong>53</strong><span>App route/pages</span></article>
+      <article class='signature-chip reveal delay-3' data-tilt><strong>8</strong><span>Hash excerpts</span></article>
     </section>
 
-    <section id="proof" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Proof Embedded</p>
-        <h2>Delivery Evidence</h2>
+    <section id='proof' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Proof On Stage</p>
+        <h2>Delivery Proof Salon</h2>
         <p>Verification snapshot date: March 29, 2026.</p>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card reveal" data-tilt>
-          <h3>Platform Topology</h3>
-          <p>Public structure metrics from direct project inspection.</p>
-          <ul>
-            <li>Total verified files: 581</li>
-            <li>Frontend segment: 119 files</li>
-            <li>Backend segment: 34 files</li>
-            <li>Route surfaces: 53 app + 13 module routes</li>
-          </ul>
+
+      <div class='runway'>
+        <article class='runway-card reveal' data-tilt>
+          <h3>Build Signature</h3>
+          <p>
+            SportsHub delivery includes strong full-stack coverage and route complexity, with a documentation and artifact trail suitable for public trust.
+          </p>
+          <div class='proof-salon'>
+            <header>Proof Metrics</header>
+            <ul>
+              <li><span>Total verified files</span><strong>581</strong></li>
+              <li><span>Frontend</span><strong>119</strong></li>
+              <li><span>Backend</span><strong>34</strong></li>
+              <li><span>Route surfaces</span><strong>53 + 13</strong></li>
+            </ul>
+          </div>
         </article>
-        <article class="proof-card reveal delay-1" data-tilt>
-          <h3>Integrity Artifacts</h3>
-          <p>Hash-excerpt publication model maintains traceability.</p>
-          <div class="table-wrap">
+
+        <article class='runway-card reveal delay-1' data-tilt>
+          <h3>Integrity Register</h3>
+          <p>Published hash excerpts preserve verifiability while protecting source.</p>
+          <div class='table-wrap'>
             <table>
               <thead><tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr></thead>
               <tbody>
@@ -98,26 +262,26 @@
       </div>
     </section>
 
-    <section id="quality" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Premium Delivery</p>
-        <h2>Luxury Feel, Production Backbone</h2>
+    <section id='quality' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Atelier Standard</p>
+        <h2>How Premium Feel Is Engineered</h2>
       </div>
-      <div class="quality-grid">
-        <article class="quality-card reveal"><h4>Visual Intent</h4><p>Distinctive typography, intentional motion, and premium hierarchy.</p></article>
-        <article class="quality-card reveal delay-1"><h4>Conversion Paths</h4><p>Clear action routes and friction-aware user flow.</p></article>
-        <article class="quality-card reveal delay-2"><h4>Build Confidence</h4><p>Evidence-first narrative that supports stakeholder trust.</p></article>
-        <article class="quality-card reveal delay-3"><h4>Private Source</h4><p>Public impact without exposing implementation assets.</p></article>
+      <div class='atelier'>
+        <article class='reveal'><h4>Narrative Precision</h4><p>Visual hierarchy and copy rhythm are tuned for executive confidence.</p></article>
+        <article class='reveal delay-1'><h4>Interaction Detail</h4><p>Motion and depth are intentional, restrained, and conversion-aware.</p></article>
+        <article class='reveal delay-2'><h4>Evidence Exposure</h4><p>The most persuasive delivery facts remain visible on first pass.</p></article>
+        <article class='reveal delay-3'><h4>Source Privacy</h4><p>Implementation details stay in private repositories by default.</p></article>
       </div>
     </section>
 
-    <section id="contact" class="contact reveal">
-      <h2>Need this premium fan-facing direction for your platform?</h2>
-      <p>One landing page, complete narrative, proof attached.</p>
-      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    <section id='contact' class='contact reveal'>
+      <h2>Need this premium editorial style for your own launch?</h2>
+      <p>High-end product atmosphere with hard delivery proof on the same page.</p>
+      <a class='btn btn-primary' href='mailto:yassin.158.mahmoud@gmail.com'>Contact Yassin Mahmoud</a>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src='app.js'></script>
 </body>
 </html>

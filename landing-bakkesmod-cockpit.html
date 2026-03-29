@@ -1,123 +1,296 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="BakkesMod Cockpit landing with native C++ proof metrics.">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <meta name='description' content='BakkesMod Cockpit landing with HUD personality and native proof metrics.'>
   <title>BakkesMod Cockpit | Zeddmo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
-</head>
-<body class="theme-neonmint">
-  <canvas id="mesh" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap' rel='stylesheet'>
+  <link rel='stylesheet' href='app.css'>
+  <style>
+    .cockpit-page {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+    }
 
-  <header class="topbar">
-    <div class="shell nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">YM</span>
+    .cockpit-page h1,
+    .cockpit-page h2,
+    .cockpit-page h3,
+    .cockpit-page h4,
+    .cockpit-page .brand {
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .cockpit-page .hero {
+      padding: 0;
+      border-color: rgba(88, 255, 195, 0.42);
+      background: linear-gradient(155deg, rgba(5, 30, 23, 0.92), rgba(6, 23, 18, 0.82));
+      overflow: hidden;
+    }
+
+    .cockpit-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      min-height: 440px;
+    }
+
+    .cockpit-brief {
+      padding: clamp(1.1rem, 2vw, 2.1rem);
+      display: grid;
+      align-content: center;
+      gap: 0.9rem;
+    }
+
+    .cockpit-brief h1 {
+      font-size: clamp(1.8rem, 4.1vw, 3.55rem);
+      max-width: 16ch;
+    }
+
+    .hud {
+      border-left: 1px solid rgba(134, 255, 214, 0.28);
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 0.9rem;
+      padding: 1.1rem;
+      background:
+        radial-gradient(circle at 50% 25%, rgba(98, 255, 198, 0.14), transparent 48%),
+        linear-gradient(180deg, rgba(4, 24, 18, 0.85), rgba(4, 20, 16, 0.92));
+    }
+
+    .ring {
+      width: min(250px, 70%);
+      aspect-ratio: 1;
+      border-radius: 999px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(#58ffc3 calc(var(--pct) * 1%), rgba(88, 255, 195, 0.12) 0);
+      box-shadow: inset 0 0 0 1px rgba(88, 255, 195, 0.25), 0 0 40px rgba(88, 255, 195, 0.22);
+    }
+
+    .ring::after {
+      content: '';
+      position: absolute;
+      inset: 12%;
+      border-radius: 999px;
+      background: rgba(6, 18, 15, 0.92);
+      box-shadow: inset 0 0 0 1px rgba(88, 255, 195, 0.2);
+    }
+
+    .ring span {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #d3ffe9;
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.25;
+    }
+
+    .hud-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .hud-item {
+      border: 1px solid rgba(88, 255, 195, 0.28);
+      border-radius: 12px;
+      padding: 0.58rem;
+      background: rgba(8, 27, 21, 0.7);
+      color: #b7f5de;
+      font-size: 0.78rem;
+    }
+
+    .hud-item strong {
+      display: block;
+      font-size: 1rem;
+      color: #e5fff3;
+      margin-top: 0.2rem;
+    }
+
+    .telemetry {
+      margin-top: 0.95rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.78rem;
+    }
+
+    .telemetry article {
+      border: 1px solid rgba(88, 255, 195, 0.3);
+      border-radius: 14px;
+      background: rgba(7, 28, 21, 0.58);
+      padding: 0.9rem;
+    }
+
+    .telemetry h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #d6fff0;
+    }
+
+    .telemetry p {
+      margin: 0.4rem 0 0;
+      color: #9fd3bf;
+      line-height: 1.55;
+      font-size: 0.84rem;
+    }
+
+    .terminal {
+      margin-top: 0.85rem;
+      border: 1px solid rgba(88, 255, 195, 0.32);
+      border-radius: 14px;
+      background: rgba(5, 20, 15, 0.88);
+      overflow: hidden;
+    }
+
+    .terminal header {
+      padding: 0.56rem 0.76rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #c9ffe9;
+      font-size: 0.78rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      background: rgba(9, 29, 22, 0.8);
+    }
+
+    .terminal pre {
+      margin: 0;
+      padding: 0.85rem;
+      color: #9cf0ce;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 1020px) {
+      .cockpit-grid,
+      .telemetry,
+      .hud-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hud {
+        border-left: 0;
+        border-top: 1px solid rgba(134, 255, 214, 0.28);
+      }
+
+      .ring {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body class='theme-neonmint cockpit-page'>
+  <canvas id='mesh' aria-hidden='true'></canvas>
+  <div class='noise' aria-hidden='true'></div>
+  <div class='cursor-aura' id='cursorAura' aria-hidden='true'></div>
+
+  <header class='topbar'>
+    <div class='shell nav-wrap'>
+      <a class='brand' href='index.html'>
+        <span class='brand-mark'>YM</span>
         <span>BakkesMod Cockpit</span>
       </a>
-      <nav class="nav">
-        <a href="#proof">Proof</a>
-        <a href="#quality">Quality</a>
-        <a href="#contact">Contact</a>
+      <nav class='nav'>
+        <a href='#proof'>Proof</a>
+        <a href='#systems'>Systems</a>
+        <a href='#contact'>Contact</a>
       </nav>
-      <a class="mini-cta" href="index.html">Launchpad</a>
+      <a class='mini-cta' href='index.html'>Launchpad</a>
     </div>
   </header>
 
-  <main class="shell">
-    <section class="hero reveal">
-      <p class="badge">Landing 3 of 6</p>
-      <h1>BakkesMod Cockpit: native plugin delivery with measurable core depth.</h1>
-      <p class="sub">
-        This concept frames the freelook plugin as a polished gameplay product while keeping its source private.
-        Metrics and artifact traces stay visible to prove real implementation.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#proof">See Native Proof</a>
-        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Request Build</a>
+  <main class='shell'>
+    <section class='hero reveal'>
+      <div class='cockpit-grid'>
+        <div class='cockpit-brief'>
+          <p class='badge'>Landing 3 of 6</p>
+          <h1>HUD-grade presentation for a native gameplay plugin.</h1>
+          <p class='sub'>
+            This page feels like a live cockpit. It combines game energy with real implementation signals from the BakkesMod freelook plugin.
+          </p>
+          <div class='hero-actions'>
+            <a class='btn btn-primary' href='#proof'>Open Telemetry Proof</a>
+            <a class='btn btn-ghost' href='mailto:yassin.158.mahmoud@gmail.com'>Build Native UX</a>
+          </div>
+        </div>
+        <aside class='hud'>
+          <div class='ring' style='--pct: 86'><span>Build<br>Readiness</span></div>
+          <div class='hud-grid'>
+            <div class='hud-item'>Plugin Core Lines<strong>537</strong></div>
+            <div class='hud-item'>Header Lines<strong>37</strong></div>
+            <div class='hud-item'>Marker Hits<strong>14</strong></div>
+            <div class='hud-item'>Hash Excerpts<strong>4</strong></div>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section class="kpi-grid">
-      <article class="kpi-card reveal" data-tilt>
-        <p class="kpi-value" data-target="537">0</p>
-        <p class="kpi-label">FreelookPlugin.cpp lines</p>
+    <section class='telemetry'>
+      <article class='reveal' data-tilt>
+        <h3>Native Depth</h3>
+        <p>C++ implementation detail is represented by line-level footprint and marker scans.</p>
       </article>
-      <article class="kpi-card reveal delay-1" data-tilt>
-        <p class="kpi-value" data-target="37">0</p>
-        <p class="kpi-label">FreelookPlugin.h lines</p>
+      <article class='reveal delay-1' data-tilt>
+        <h3>Delivery Proof</h3>
+        <p>Hash excerpts provide integrity visibility without revealing proprietary source.</p>
       </article>
-      <article class="kpi-card reveal delay-2" data-tilt>
-        <p class="kpi-value" data-target="14">0</p>
-        <p class="kpi-label">Implementation marker hits</p>
-      </article>
-      <article class="kpi-card reveal delay-3" data-tilt>
-        <p class="kpi-value" data-target="4">0</p>
-        <p class="kpi-label">Published hash excerpts</p>
+      <article class='reveal delay-2' data-tilt>
+        <h3>Player Focus</h3>
+        <p>Interaction narrative is tuned for speed, control, and confidence.</p>
       </article>
     </section>
 
-    <section id="proof" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Proof Embedded</p>
-        <h2>Native Delivery Proof</h2>
+    <section id='proof' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Telemetry Proof</p>
+        <h2>Native Delivery Evidence</h2>
         <p>Verification snapshot date: March 29, 2026.</p>
       </div>
-      <div class="proof-grid">
-        <article class="proof-card reveal" data-tilt>
-          <h3>Code Surface Signals</h3>
-          <p>Measured implementation footprint from direct source snapshot.</p>
-          <ul>
-            <li>Source files: 2</li>
-            <li>Main implementation lines: 537</li>
-            <li>Header lines: 37</li>
-            <li>Key marker hits: 14</li>
-          </ul>
-        </article>
-        <article class="proof-card reveal delay-1" data-tilt>
-          <h3>Artifact Hash Trail</h3>
-          <p>Hash excerpts allow validation without public source release.</p>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr></thead>
-              <tbody>
-                <tr><td>FreelookPlugin.cpp</td><td>2BDA945E...D21C7C92</td></tr>
-                <tr><td>FreelookPlugin.h</td><td>C22B0607...F34E5E40</td></tr>
-                <tr><td>CMakeLists.txt</td><td>C6E1A3FD...9C201A634</td></tr>
-                <tr><td>build.bat</td><td>A3BBCF94...9B737E15</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
+
+      <article class='terminal reveal' data-tilt>
+        <header>plugin.stats.log</header>
+        <pre>source_files=2
+freelook_plugin_cpp_lines=537
+freelook_plugin_h_lines=37
+implementation_marker_hits=14
+policy=public-proof-private-source</pre>
+      </article>
+
+      <article class='terminal reveal delay-1' data-tilt>
+        <header>artifact.hash.excerpts</header>
+        <pre>FreelookPlugin.cpp  2BDA945E...D21C7C92
+FreelookPlugin.h    C22B0607...F34E5E40
+CMakeLists.txt      C6E1A3FD...9C201A634
+build.bat           A3BBCF94...9B737E15</pre>
+      </article>
+    </section>
+
+    <section id='systems' class='section'>
+      <div class='section-head reveal'>
+        <p class='badge'>Cockpit Systems</p>
+        <h2>Why This Feels Different</h2>
+      </div>
+      <div class='quality-grid'>
+        <article class='quality-card reveal'><h4>HUD Typography</h4><p>Technical font stack for game-native identity.</p></article>
+        <article class='quality-card reveal delay-1'><h4>Gauge Visuals</h4><p>Performance motif reinforces implementation confidence.</p></article>
+        <article class='quality-card reveal delay-2'><h4>Telemetry Blocks</h4><p>Data-first storytelling keeps the pitch credible.</p></article>
+        <article class='quality-card reveal delay-3'><h4>Source Privacy</h4><p>Private implementation remains protected.</p></article>
       </div>
     </section>
 
-    <section id="quality" class="section">
-      <div class="section-head reveal">
-        <p class="badge">Gameplay Engineering</p>
-        <h2>What This Presentation Proves</h2>
-      </div>
-      <div class="quality-grid">
-        <article class="quality-card reveal"><h4>Native Focus</h4><p>C++ plugin delivery with controlled build surface.</p></article>
-        <article class="quality-card reveal delay-1"><h4>Input Clarity</h4><p>Player control narrative presented with measurable backing.</p></article>
-        <article class="quality-card reveal delay-2"><h4>Performance Tone</h4><p>Visual language tuned for speed and precision.</p></article>
-        <article class="quality-card reveal delay-3"><h4>Private Source</h4><p>All implementation remains in private repositories.</p></article>
-      </div>
-    </section>
-
-    <section id="contact" class="contact reveal">
-      <h2>Need a premium landing for your native plugin product?</h2>
-      <p>Proof visible. Source protected. UX elevated.</p>
-      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    <section id='contact' class='contact reveal'>
+      <h2>Want this cockpit personality for your gaming product?</h2>
+      <p>Distinct visual identity, proof-backed narrative, premium feel.</p>
+      <a class='btn btn-primary' href='mailto:yassin.158.mahmoud@gmail.com'>Contact Yassin Mahmoud</a>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src='app.js'></script>
 </body>
 </html>
