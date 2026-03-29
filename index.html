@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Flagship portfolio landing by Yassin Mahmoud with embedded delivery proof.">
+  <title>Yassin Mahmoud | Flagship Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <canvas id="mesh" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="shell nav-wrap">
+      <a href="#home" class="brand">
+        <span class="brand-mark">YM</span>
+        <span>Yassin Mahmoud</span>
+      </a>
+      <nav class="nav">
+        <a href="#proof">Proof</a>
+        <a href="#quality">Quality</a>
+        <a href="#systems">Systems</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="mini-cta" href="https://github.com/zeddmo">GitHub</a>
+    </div>
+  </header>
+
+  <main id="home" class="shell">
+    <section class="hero reveal">
+      <p class="badge">Flagship Portfolio Experience</p>
+      <h1>The kind of website that makes people stop, stare, and remember your name.</h1>
+      <p class="sub">
+        This landing page is intentionally cinematic and proof-driven. No scattered links. No idea dumps.
+        Everything important is here: delivery evidence, quality standard, engineering surface, and contact.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#proof">See Delivery Proof</a>
+        <a class="btn btn-ghost" href="#contact">Work With Me</a>
+      </div>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="kpi-card tilt reveal" data-tilt>
+        <p class="kpi-value" data-target="581">0</p>
+        <p class="kpi-label">SportsHub verified code/docs/config files</p>
+      </article>
+      <article class="kpi-card tilt reveal delay-1" data-tilt>
+        <p class="kpi-value" data-target="537">0</p>
+        <p class="kpi-label">FreelookPlugin.cpp verified line count</p>
+      </article>
+      <article class="kpi-card tilt reveal delay-2" data-tilt>
+        <p class="kpi-value" data-target="14">0</p>
+        <p class="kpi-label">Source-level implementation marker hits</p>
+      </article>
+      <article class="kpi-card tilt reveal delay-3" data-tilt>
+        <p class="kpi-value" data-target="8">0</p>
+        <p class="kpi-label">Published SHA-256 artifact hashes</p>
+      </article>
+    </section>
+
+    <section id="proof" class="section">
+      <div class="section-head reveal">
+        <p class="badge">Proof Embedded On Landing</p>
+        <h2>Delivery Proof</h2>
+      </div>
+
+      <div class="proof-grid">
+        <article class="proof-card reveal tilt" data-tilt>
+          <h3>SportsHub Egypt (Private Source)</h3>
+          <p>Full-stack product delivery verified from direct project snapshot.</p>
+          <ul>
+            <li>Frontend files: 119</li>
+            <li>Backend files: 34</li>
+            <li>App route/page files: 53</li>
+            <li>Module route files: 13</li>
+          </ul>
+          <table>
+            <thead>
+              <tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>README.md</td><td><code>9AA7A0AC...E0D6FF46D</code></td></tr>
+              <tr><td>FINAL_SUMMARY.txt</td><td><code>B16F2740...DF623BFE7</code></td></tr>
+              <tr><td>BUILD_COMPLETE.md</td><td><code>DE3FD736...27493E02</code></td></tr>
+              <tr><td>QUICK_START.md</td><td><code>A6F08BE3...BBB60D23</code></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="proof-card reveal delay-1 tilt" data-tilt>
+          <h3>BakkesMod Freelook Plugin (Private Source)</h3>
+          <p>Native C++ delivery verified from direct source snapshot.</p>
+          <ul>
+            <li>Source files: 2</li>
+            <li>Main implementation lines: 537</li>
+            <li>Header lines: 37</li>
+            <li>Key marker hits: 14</li>
+          </ul>
+          <table>
+            <thead>
+              <tr><th>Artifact</th><th>SHA-256 (excerpt)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>FreelookPlugin.cpp</td><td><code>2BDA945E...D21C7C92</code></td></tr>
+              <tr><td>FreelookPlugin.h</td><td><code>C22B0607...F34E5E40</code></td></tr>
+              <tr><td>CMakeLists.txt</td><td><code>C6E1A3FD...9C201A634</code></td></tr>
+              <tr><td>build.bat</td><td><code>A3BBCF94...9B737E15</code></td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <p class="verify reveal delay-2">Verification snapshot date: March 29, 2026.</p>
+    </section>
+
+    <section id="quality" class="section">
+      <div class="section-head reveal">
+        <p class="badge">Professional Standard</p>
+        <h2>How I Actually Build</h2>
+      </div>
+      <div class="quality-grid">
+        <article class="quality-card reveal">
+          <h4>Scope Precision</h4>
+          <p>Requirements to measurable outcomes, then to implementation milestones.</p>
+        </article>
+        <article class="quality-card reveal delay-1">
+          <h4>Architecture First</h4>
+          <p>Service boundaries, schema consistency, and API contract discipline before scale.</p>
+        </article>
+        <article class="quality-card reveal delay-2">
+          <h4>Quality Gates</h4>
+          <p>Regression, smoke, sanity, and end-to-end checks before release.</p>
+        </article>
+        <article class="quality-card reveal delay-3">
+          <h4>Release Reliability</h4>
+          <p>CI/CD control, rollback readiness, and documented handoff standards.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="systems" class="section system-shell reveal">
+      <p class="badge">Engineering Surface</p>
+      <h2>Stack Profile</h2>
+      <div class="stack-row">
+        <span>Next.js</span>
+        <span>React</span>
+        <span>TypeScript</span>
+        <span>Node.js</span>
+        <span>Express</span>
+        <span>MongoDB</span>
+        <span>Docker</span>
+        <span>CI/CD</span>
+      </div>
+    </section>
+
+    <section id="contact" class="contact reveal">
+      <h2>Want your product to look and perform at this level?</h2>
+      <p>Private-source delivery, public proof, and premium web execution from concept to production.</p>
+      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
