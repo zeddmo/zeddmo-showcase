@@ -1,25 +1,30 @@
 # Yassin Mahmoud - Project Showcase (No Source Code)
 
-This repository is a public portfolio companion. It showcases professional project outcomes while protecting private source code.
+This repository is the public showcase for product outcomes and architecture-level concept work while source code remains private.
 
-## Included Case Studies
-- SportsHub Egypt (full-stack platform)
-- Rocket League Freelook Plugin (native plugin engineering)
-- Upcoming full-stack website roadmap
+## Live Showcase Sections
+
+### Delivered Projects (Case Studies)
+- [SportsHub Egypt](projects/SPORTSHUB_CASE_STUDY.md)
+- [Rocket League Freelook Plugin (BakkesMod)](projects/BAKKESMOD_PLUGIN_CASE_STUDY.md)
+
+### Full-Stack Product Concepts (Showcase Only)
+- [VenueOps Cloud](projects/concepts/VENUEOPS_CLOUD.md)
+- [RecruitFlow AI](projects/concepts/RECRUITFLOW_AI.md)
+- [MatchPulse Live](projects/concepts/MATCHPULSE_LIVE.md)
+- [Creator Commerce Studio](projects/concepts/CREATOR_COMMERCE_STUDIO.md)
+- [ClubOS](projects/concepts/CLUBOS.md)
+
+Roadmap index: [projects/FULLSTACK_WEBSITE_IDEAS.md](projects/FULLSTACK_WEBSITE_IDEAS.md)
 
 ## Source Code Policy
 All featured production projects are private.
 
-Public artifacts are limited to:
+Public artifacts in this repository are limited to:
 - Case studies
+- Concept briefs
 - Architecture summaries
-- Visual demos
-- Outcome metrics
+- Demo planning notes
 
-## Case Studies
-- [SportsHub Egypt](projects/SPORTSHUB_CASE_STUDY.md)
-- [Rocket League Freelook Plugin (BakkesMod)](projects/BAKKESMOD_PLUGIN_CASE_STUDY.md)
-- [Professional Full-Stack Website Concepts](projects/FULLSTACK_WEBSITE_IDEAS.md)
-
-For private demo access or technical discussion, contact:
+For private walkthrough requests, contact:
 yassin.158.mahmoud@gmail.com
