@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Release Reliability landing focused on quality gates and confidence.">
+  <title>Release Reliability | Zeddmo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="theme-ambergrid">
+  <canvas id="mesh" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-aura" id="cursorAura" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="shell nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">YM</span>
+        <span>Release Reliability</span>
+      </a>
+      <nav class="nav">
+        <a href="#proof">Proof</a>
+        <a href="#quality">Gates</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="mini-cta" href="index.html">Launchpad</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero reveal">
+      <p class="badge">Landing 5 of 6</p>
+      <h1>Release Reliability: confidence architecture for product delivery.</h1>
+      <p class="sub">
+        This page turns engineering discipline into a conversion asset.
+        Buyers see that release quality is controlled, verified, and repeatable.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#proof">View Reliability Proof</a>
+        <a class="btn btn-ghost" href="mailto:yassin.158.mahmoud@gmail.com">Build With Me</a>
+      </div>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="kpi-card reveal" data-tilt>
+        <p class="kpi-value" data-target="4">0</p>
+        <p class="kpi-label">Quality gates highlighted</p>
+      </article>
+      <article class="kpi-card reveal delay-1" data-tilt>
+        <p class="kpi-value" data-target="2">0</p>
+        <p class="kpi-label">Delivered private-source systems</p>
+      </article>
+      <article class="kpi-card reveal delay-2" data-tilt>
+        <p class="kpi-value" data-target="8">0</p>
+        <p class="kpi-label">Proof hash excerpts published</p>
+      </article>
+      <article class="kpi-card reveal delay-3" data-tilt>
+        <p class="kpi-value" data-target="0">0</p>
+        <p class="kpi-label">Public source exposure incidents</p>
+      </article>
+    </section>
+
+    <section id="proof" class="section">
+      <div class="section-head reveal">
+        <p class="badge">Reliability Proof</p>
+        <h2>Gate-Centered Delivery Model</h2>
+      </div>
+      <div class="proof-grid">
+        <article class="proof-card reveal" data-tilt>
+          <h3>Quality Gate Chain</h3>
+          <ul>
+            <li>Scope gate: requirement-to-outcome alignment.</li>
+            <li>Build gate: implementation completeness checks.</li>
+            <li>Validation gate: regression and smoke confidence.</li>
+            <li>Release gate: rollback and handoff readiness.</li>
+          </ul>
+        </article>
+        <article class="proof-card reveal delay-1" data-tilt>
+          <h3>Artifact Visibility</h3>
+          <p>Public artifacts and hash excerpts preserve trust without leaking code.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Artifact</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>README.md</td><td>Operational baseline and context</td></tr>
+                <tr><td>BUILD_COMPLETE.md</td><td>Build completion evidence</td></tr>
+                <tr><td>QUICK_START.md</td><td>Deployment-ready onboarding</td></tr>
+                <tr><td>FINAL_SUMMARY.txt</td><td>Scope completion narrative</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="quality" class="section">
+      <div class="section-head reveal">
+        <p class="badge">Operations Standard</p>
+        <h2>Release Culture</h2>
+      </div>
+      <div class="quality-grid">
+        <article class="quality-card reveal"><h4>Predictable Outcomes</h4><p>Each release step is explicit and auditable.</p></article>
+        <article class="quality-card reveal delay-1"><h4>Low-Risk Shipping</h4><p>Rollback and contingency are planned, not improvised.</p></article>
+        <article class="quality-card reveal delay-2"><h4>Stakeholder Clarity</h4><p>Evidence reduces friction in technical decision-making.</p></article>
+        <article class="quality-card reveal delay-3"><h4>Premium UX</h4><p>Trust and visual excellence operate together.</p></article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact reveal">
+      <h2>Need stronger release confidence for your product?</h2>
+      <p>I can build the same proof-first reliability narrative for your landing.</p>
+      <a class="btn btn-primary" href="mailto:yassin.158.mahmoud@gmail.com">Contact Yassin Mahmoud</a>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
